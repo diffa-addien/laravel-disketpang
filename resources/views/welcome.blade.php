@@ -4,13 +4,21 @@
 
 @section('content')
 
-    {{-- Hero Section --}}
-    <div class="relative h-screen w-full flex items-center justify-center bg-gray-900 text-white">
-        {{-- Ganti 'hero-bg.jpg' dengan path gambar background Anda di folder /public --}}
-        <div class="absolute inset-0 bg-black opacity-50 z-0"
-            style="background-image: url('/hero-bg.jpg'); background-size: cover; background-position: center;"></div>
+    {{-- resources/views/welcome.blade.php --}}
 
+    {{-- Hero Section --}}
+    <div class="relative h-screen w-full flex items-center justify-center text-white bg-gray-900">
+
+        {{-- Container untuk Background Image & Overlay --}}
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ $heroImageUrl }}')">
+
+            {{-- Lapisan Overlay Gelap --}}
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        {{-- Container untuk Konten Teks (agar berada di atas background) --}}
         <div class="relative z-10 text-center px-4 flex flex-col items-center">
+
             {{-- Slogan --}}
             <div class="max-w-4xl">
                 <p class="text-lg md:text-xl font-light">Selamat datang di website Dinas Ketahanan Pangan</p>
@@ -23,7 +31,6 @@
             <div
                 class="mt-12 w-full max-w-5xl p-6 bg-gray-800 bg-opacity-70 backdrop-blur-md rounded-xl border border-gray-700">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {{-- Email --}}
                     <div class="flex items-center gap-4">
                         <i class="fa-solid fa-envelope text-3xl text-sky-400"></i>
                         <div>
@@ -31,7 +38,6 @@
                             <p class="text-xs text-gray-300">Pesan elektronik 24/7</p>
                         </div>
                     </div>
-                    {{-- Whatsapp --}}
                     <div class="flex items-center gap-4">
                         <i class="fa-brands fa-whatsapp text-4xl text-sky-400"></i>
                         <div>
@@ -39,7 +45,6 @@
                             <p class="text-xs text-gray-300">Chat / Telepon via Whatsapp</p>
                         </div>
                     </div>
-                    {{-- Alamat --}}
                     <div class="flex items-center gap-4">
                         <i class="fa-regular fa-map text-3xl text-sky-400"></i>
                         <div>
@@ -51,61 +56,68 @@
             </div>
         </div>
     </div>
-    
+
     <div class="bg-white py-20 sm:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        {{-- Judul Section (tetap sama) --}}
-        <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Informasi & Berita Terkini</h2>
-            <p class="mt-2 text-lg leading-8 text-gray-600">
-                Ikuti perkembangan terbaru dan program-program dari Dinas Ketahanan Pangan.
-            </p>
-        </div>
-
-        {{-- Grid Berita (diubah) --}}
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            @forelse ($berita as $item)
-            <article class="flex flex-col items-start justify-between transform transition duration-300 hover:-translate-y-2">
-                {{-- Gambar --}}
-                <div class="relative w-full">
-                    {{-- Mengambil gambar pertama dari koleksi --}}
-                    <img src="{{ $item->getFirstMediaUrl('berita_images') }}" alt="{{ $item->judul }}" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
-                    <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
-                </div>
-                {{-- Konten Teks --}}
-                <div class="max-w-xl">
-                    <div class="mt-8 flex items-center gap-x-4 text-xs">
-                        <time datetime="{{ $item->published_at->toDateString() }}" class="text-gray-500">{{ $item->published_at->translatedFormat('d F Y') }}</time>
-                        {{-- Kategori bisa ditambahkan nanti jika ada fiturnya --}}
-                        {{-- <span class="relative z-10 rounded-full bg-sky-100 px-3 py-1.5 font-medium text-sky-700">Kategori</span> --}}
-                    </div>
-                    <div class="group relative">
-                        <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-sky-600">
-                            {{-- Arahkan link ke halaman detail berita --}}
-                            <a href="{{ route('berita.show', $item->slug) }}">
-                                <span class="absolute inset-0"></span>
-                                {{ $item->judul }}
-                            </a>
-                        </h3>
-                        {{-- Excerpt bisa kita buat dari sebagian isi berita --}}
-                        <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{!! Str::limit(strip_tags($item->isi), 150) !!}</p>
-                    </div>
-                </div>
-            </article>
-            @empty
-            <div class="col-span-3 text-center text-gray-500">
-                <p>Belum ada berita yang dipublikasikan.</p>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            {{-- Judul Section (tetap sama) --}}
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Informasi & Berita Terkini</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Ikuti perkembangan terbaru dan program-program dari Dinas Ketahanan Pangan.
+                </p>
             </div>
-            @endforelse
-        </div>
 
-        <div class="mt-16 text-center">
-            <a href="{{ route('berita.index') }}" class="rounded-md bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
-                Lihat Semua Berita
-            </a>
+            {{-- Grid Berita (diubah) --}}
+            <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                @forelse ($berita as $item)
+                    <article
+                        class="flex flex-col items-start justify-between transform transition duration-300 hover:-translate-y-2">
+                        {{-- Gambar --}}
+                        <div class="relative w-full">
+                            {{-- Mengambil gambar pertama dari koleksi --}}
+                            <img src="{{ $item->getFirstMediaUrl('berita_images') }}" alt="{{ $item->judul }}"
+                                class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                        </div>
+                        {{-- Konten Teks --}}
+                        <div class="max-w-xl">
+                            <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                <time datetime="{{ $item->published_at->toDateString() }}"
+                                    class="text-gray-500">{{ $item->published_at->translatedFormat('d F Y') }}</time>
+                                {{-- Kategori bisa ditambahkan nanti jika ada fiturnya --}}
+                                {{-- <span
+                                    class="relative z-10 rounded-full bg-sky-100 px-3 py-1.5 font-medium text-sky-700">Kategori</span>
+                                --}}
+                            </div>
+                            <div class="group relative">
+                                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-sky-600">
+                                    {{-- Arahkan link ke halaman detail berita --}}
+                                    <a href="{{ route('berita.show', $item->slug) }}">
+                                        <span class="absolute inset-0"></span>
+                                        {{ $item->judul }}
+                                    </a>
+                                </h3>
+                                {{-- Excerpt bisa kita buat dari sebagian isi berita --}}
+                                <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                                    {!! Str::limit(strip_tags($item->isi), 150) !!}</p>
+                            </div>
+                        </div>
+                    </article>
+                @empty
+                    <div class="col-span-3 text-center text-gray-500">
+                        <p>Belum ada berita yang dipublikasikan.</p>
+                    </div>
+                @endforelse
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="{{ route('berita.index') }}"
+                    class="rounded-md bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+                    Lihat Semua Berita
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
     {{--
     ============================================================
