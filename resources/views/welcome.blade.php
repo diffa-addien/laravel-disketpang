@@ -99,7 +99,8 @@
                                 </h3>
                                 {{-- Excerpt bisa kita buat dari sebagian isi berita --}}
                                 <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                                    {!! Str::limit(strip_tags($item->isi), 150) !!}</p>
+                                    {!! Str::limit(strip_tags($item->isi), 150) !!}
+                                </p>
                             </div>
                         </div>
                     </article>
@@ -127,14 +128,10 @@
     @php
         // Data Dummy untuk Galeri
         $galeri = [
-            ['url' => 'https://images.unsplash.com/photo-1579367505671-3c5836416810?q=80&w=800&auto=format&fit=crop', 'alt' => 'Kegiatan panen padi bersama'],
-            ['url' => 'https://images.unsplash.com/photo-1627923227493-20a2d3c9f34f?q=80&w=800&auto=format&fit=crop', 'alt' => 'Penyuluhan kepada kelompok tani'],
-            ['url' => 'https://images.unsplash.com/photo-1599579080598-a1ad95648868?q=80&w=800&auto=format&fit=crop', 'alt' => 'Produk pertanian lokal'],
             ['url' => 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800&auto=format&fit=crop', 'alt' => 'Lahan pertanian yang subur'],
             ['url' => 'https://images.unsplash.com/photo-1563201515-ADbe2a245592?q=80&w=800&auto=format&fit=crop', 'alt' => 'Distribusi bantuan pangan'],
             ['url' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=800&auto=format&fit=crop', 'alt' => 'Pasar tani lokal'],
             ['url' => 'https://images.unsplash.com/photo-1615755959899-31620610336e?q=80&w=800&auto=format&fit=crop', 'alt' => 'Bibit tanaman unggul'],
-            ['url' => 'https://images.unsplash.com/photo-1502086228521-7b7e63567023?q=80&w=800&auto=format&fit=crop', 'alt' => 'Anak-anak belajar menanam'],
         ];
     @endphp
 
