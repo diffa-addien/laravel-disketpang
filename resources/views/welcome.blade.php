@@ -34,21 +34,21 @@
                     <div class="flex items-center gap-4">
                         <i class="fa-solid fa-envelope text-3xl text-sky-400"></i>
                         <div>
-                            <p class="font-semibold">disketapang@haltimkab.go.id</p>
+                            <p class="font-semibold">{{ $contactSettings['contact_email'] ?? 'Email belum diatur' }}</p>
                             <p class="text-xs text-gray-300">Pesan elektronik 24/7</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
                         <i class="fa-brands fa-whatsapp text-4xl text-sky-400"></i>
                         <div>
-                            <p class="font-semibold">0812-XXXX-XXXX</p>
+                            <p class="font-semibold">{{ $contactSettings['contact_phone'] ?? 'Telepon belum diatur' }}</p>
                             <p class="text-xs text-gray-300">Chat / Telepon via Whatsapp</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
                         <i class="fa-regular fa-map text-3xl text-sky-400"></i>
                         <div>
-                            <p class="font-semibold">Kompleks Perkantoran Bupati</p>
+                            <p class="font-semibold">{{ $contactSettings['contact_address'] ?? 'Alamat belum diatur' }}</p>
                             <p class="text-xs text-gray-300">Buka alamat di Google Maps</p>
                         </div>
                     </div>

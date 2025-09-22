@@ -18,8 +18,8 @@ class PengaturanTampilan extends Page implements HasForms
     protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
     protected static string $view = 'filament.pages.pengaturan-tampilan';
 
-    protected static ?string $navigationGroup = 'Pengaturan Situs';
-    protected static ?string $navigationLabel = 'Tampilan';
+    protected static ?string $navigationGroup = 'Pengaturan Web';
+    protected static ?string $navigationLabel = 'Background';
     protected static ?string $title = 'Pengaturan Tampilan';
 
     public ?array $data = [];
@@ -35,7 +35,7 @@ class PengaturanTampilan extends Page implements HasForms
         return $form
             ->schema([
                 SpatieMediaLibraryFileUpload::make('hero_image')
-                    ->label('Gambar Latar Hero Section')
+                    ->label('Gambar Latar Utama')
                     ->collection('hero_background')
                     ->image()
                     ->imageEditor()

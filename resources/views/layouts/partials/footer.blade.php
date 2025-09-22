@@ -11,7 +11,8 @@
                     </div>
                 </div>
                 <p class="mt-4 text-sm text-gray-400">
-                    Menyediakan informasi dan layanan terkait ketahanan pangan untuk mendukung kesejahteraan masyarakat di Kabupaten Halmahera Timur.
+                    Menyediakan informasi dan layanan terkait ketahanan pangan untuk mendukung kesejahteraan masyarakat
+                    di Kabupaten Halmahera Timur.
                 </p>
                 <div class="flex mt-6 space-x-4 text-gray-400">
                     <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook fa-lg"></i></a>
@@ -45,15 +46,17 @@
                     <ul class="mt-6 space-y-4 text-sm">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-location-dot mt-1"></i>
-                            <span>Kompleks Perkantoran Bupati, Maba, Halmahera Timur</span>
+                            <span>{{ $contactSettings['contact_address'] ?? 'Alamat belum diatur' }}</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-envelope mt-1"></i>
-                            <a href="mailto:disketapang@haltimkab.go.id" class="hover:text-white transition">disketapang@haltimkab.go.id</a>
+                            <a href="mailto:{{ $contactSettings['contact_email'] ?? '' }}"
+                                class="hover:text-white transition">{{ $contactSettings['contact_email'] ?? 'Email belum diatur' }}</a>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-phone mt-1"></i>
-                            <a href="tel:0812XXXXXXX" class="hover:text-white transition">0812-XXXX-XXXX</a>
+                            <a href="tel:{{ $contactSettings['contact_phone'] ?? '' }}"
+                                class="hover:text-white transition">{{ $contactSettings['contact_phone'] ?? 'Telepon belum diatur' }}</a>
                         </li>
                     </ul>
                 </div>
