@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media; // <-- Tambahkan ini
 
 class Berita extends Model implements HasMedia
 {
@@ -29,4 +30,12 @@ class Berita extends Model implements HasMedia
         $this->addMediaCollection('berita_images')
             ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp']);
     }
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('preview')
+            ->width(400)
+            ->height(300)
+            ->sharpen(10);
+    }
+
 }

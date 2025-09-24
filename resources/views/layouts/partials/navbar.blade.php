@@ -48,12 +48,8 @@
                         @endforelse
                     </div>
                 </li>
-                <li><a href="#"
-                        class="block py-2 px-3 text-gray-400 hover:text-white md:hover:bg-transparent md:p-0">Galeri</a>
-                </li>
-                <li><a href="#"
-                        class="block py-2 px-3 text-gray-400 hover:text-white md:hover:bg-transparent md:p-0">Kontak</a>
-                </li>
+                <li><a href="{{ route('gallery.index') }}" class="block py-2 px-3 text-gray-400 hover:text-white md:hover:bg-transparent md:p-0">Galeri</a></li>
+<li><a href="{{ route('contact.index') }}" class="block py-2 px-3 text-gray-400 hover:text-white md:hover:bg-transparent md:p-0">Kontak</a></li>
                 <li><a href="{{ route('dokumen.index') }}"
                         class="block py-2 px-3 text-gray-400 hover:text-white md:hover:bg-transparent md:p-0">Publikasi</a>
                 </li>

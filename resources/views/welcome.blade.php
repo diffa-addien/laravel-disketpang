@@ -135,40 +135,49 @@
         ];
     @endphp
 
-    <div class="bg-gray-50 py-20 sm:py-24">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            {{-- Judul Section --}}
-            <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Galeri Foto</h2>
-                <p class="mt-2 text-lg leading-8 text-gray-600">
-                    Dokumentasi visual dari berbagai program dan kegiatan yang telah kami laksanakan.
-                </p>
-            </div>
+    {{-- 
+    ============================================================
+    SECTION GALERI (DIPERBARUI)
+    ============================================================
+--}}
+<div class="bg-gray-50 py-20 sm:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        {{-- Judul Section --}}
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Galeri</h2>
+            <p class="mt-2 text-lg leading-8 text-gray-600">
+                Dokumentasi visual dari berbagai program dan kegiatan yang telah kami laksanakan.
+            </p>
+        </div>
 
-            {{-- Grid Galeri --}}
-            <div class="mx-auto mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-                @foreach ($galeri as $item)
-                    <div class="group relative overflow-hidden rounded-xl">
-                        <img class="h-auto max-w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-110"
-                            src="{{ $item['url'] }}" alt="{{ $item['alt'] }}">
-                        <div
-                            class="absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-40">
-                        </div>
-                        <div
-                            class="absolute bottom-0 left-0 p-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                            <p class="text-sm font-semibold">{{ $item['alt'] }}</p>
-                        </div>
+        {{-- Grid Galeri (Dinamis dengan Rasio Persegi) --}}
+        <div class="mx-auto mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            @forelse ($latestImages as $image)
+                <a href="{{ $image->getUrl() }}" 
+                   data-fslightbox="gallery-welcome" 
+                   class="group relative overflow-hidden rounded-xl aspect-square">
+
+                    <img class="h-full w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-110"
+                         src="{{ $image->getUrl('preview') }}" 
+                         alt="{{ $image->name }}">
+
+                    <div class="absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-40 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
                     </div>
-                @endforeach
-            </div>
-
-            <div class="mt-16 text-center">
-                <a href="#"
-                    class="rounded-md bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
-                    Lihat Galeri Lengkap
                 </a>
-            </div>
+            @empty
+                <div class="col-span-full text-center text-gray-500">
+                    <p>Belum ada gambar di galeri.</p>
+                </div>
+            @endforelse
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="{{ route('gallery.index') }}" class="rounded-md bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+                Lihat Galeri Lengkap
+            </a>
         </div>
     </div>
+</div>
 
 @endsection

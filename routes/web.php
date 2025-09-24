@@ -8,14 +8,20 @@ use App\Http\Controllers\BeritaController; // <-- Tambahkan ini
 use App\Models\Setting; // <-- Tambahkan ini
 use App\Models\Halaman; // <-- Tambahkan ini di atas
 use App\Http\Controllers\DokumenController; // <-- Tambahkan ini di atas
-
-
+use App\Http\Controllers\GalleryController; // <-- Tambahkan ini di atas
+use App\Http\Controllers\ContactController; // <-- Tambahkan ini di atas
+use Spatie\MediaLibrary\MediaCollections\Models\Media; // <-- Tambahkan ini di atas
 
 
 Route::get('/', function () {
     $beritaTerbaru = Berita::where('is_published', true)
         ->latest('published_at')
         ->take(3)
+        ->get();
+         $latestImages = Media::query()
+        ->whereIn('mime_type', ['image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+        ->latest()
+        ->take(4) // Ambil 4 gambar
         ->get();
 
     // Ambil data setting background hero
@@ -29,6 +35,7 @@ Route::get('/', function () {
         'berita' => $beritaTerbaru,
         'heroImageUrl' => $heroImageUrl, // Kirim URL ke view
         'contactSettings' => $contactSettings, // <-- Kirim data kontak ke view
+        'latestImages' => $latestImages,
     ]);
 });
 
@@ -44,3 +51,6 @@ Route::get('/page/{slug}', function ($slug) {
 })->name('halaman.show');
 
 Route::get('/publikasi-dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
+Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
+

@@ -4,7 +4,7 @@
             {{-- Kolom 1: Tentang Instansi --}}
             <div>
                 <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="/logo.png" class="h-12" alt="Logo Disketapang">
+                    <img src="{{ url('assets/logo_haltim.png') }}" class="h-8" alt="Logo Disketapang">
                     <div class="text-white text-base">
                         <span class="font-bold block leading-tight">Dinas Ketahanan Pangan</span>
                         <span class="block leading-tight">Kabupaten Halmahera Timur</span>
@@ -15,10 +15,10 @@
                     di Kabupaten Halmahera Timur.
                 </p>
                 <div class="flex mt-6 space-x-4 text-gray-400">
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook fa-lg"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram fa-lg"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-youtube fa-lg"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                    <a href="{{ $contactSettings['social_facebook'] ?? '#' }}" target="_blank" class="hover:text-white"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                    <a href="{{ $contactSettings['social_instagram'] ?? '#' }}" target="_blank" class="hover:text-white"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                    <a href="{{ $contactSettings['social_youtube'] ?? '#' }}" target="_blank" class="hover:text-white"><i class="fa-brands fa-youtube fa-lg"></i></a>
+                    <a href="{{ $contactSettings['social_twitter'] ?? '#' }}" target="_blank" class="hover:text-white"><i class="fa-brands fa-twitter fa-lg"></i></a>
                 </div>
             </div>
 
