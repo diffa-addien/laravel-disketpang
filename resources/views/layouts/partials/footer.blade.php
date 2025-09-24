@@ -34,11 +34,13 @@
                     </ul>
                 </div>
                 <div>
-                    <p class="font-medium text-white">Layanan</p>
+                    <p class="font-medium text-white">Statistik Pengunjung</p>
                     <ul class="mt-6 space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Informasi Harga Pangan</a></li>
-                        <li><a href="#" class="hover:text-white transition">Penyuluhan Pertanian</a></li>
-                        <li><a href="#" class="hover:text-white transition">Program Lumbung Pangan</a></li>
+                        <li>Hari Ini: <span class="font-semibold">{{ number_format($visitorStats['today']) }}</span>
+                        </li>
+                        <li>Minggu Ini: <span
+                                class="font-semibold">{{ number_format($visitorStats['this_week']) }}</span></li>
+                        <li>Total: <span class="font-semibold">{{ number_format($visitorStats['total']) }}</span></li>
                     </ul>
                 </div>
                 <div>

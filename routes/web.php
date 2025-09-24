@@ -7,6 +7,8 @@ use App\Models\Berita;
 use App\Http\Controllers\BeritaController; // <-- Tambahkan ini
 use App\Models\Setting; // <-- Tambahkan ini
 use App\Models\Halaman; // <-- Tambahkan ini di atas
+use App\Http\Controllers\DokumenController; // <-- Tambahkan ini di atas
+
 
 
 
@@ -40,3 +42,5 @@ Route::get('/page/{slug}', function ($slug) {
 
     return view('halaman.show', ['halaman' => $halaman]);
 })->name('halaman.show');
+
+Route::get('/publikasi-dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
