@@ -16,13 +16,13 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
             @forelse ($images as $image)
-                {{-- KODE DI BAWAH INI TELAH DIUBAH --}}
                 <a href="{{ $image->getUrl() }}" 
                    data-fslightbox="gallery" 
-                   class="group relative overflow-hidden rounded-xl aspect-square"> {{-- <-- rasio 1:1 ditambahkan di sini --}}
+                   class="group relative overflow-hidden rounded-xl aspect-square">
 
-                    <img class="h-full w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-110" {{-- <-- class diubah menjadi h-full w-full --}}
-                         src="{{ $image->getUrl('preview') }}" 
+                    {{-- Menggunakan getUrl() tanpa 'preview' untuk memuat gambar asli --}}
+                    <img class="h-full w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-110"
+                         src="{{ $image->getUrl() }}" 
                          alt="{{ $image->name }}">
 
                     <div class="absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-40 flex items-center justify-center">

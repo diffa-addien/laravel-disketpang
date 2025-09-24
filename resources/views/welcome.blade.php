@@ -135,30 +135,33 @@
         ];
     @endphp
 
-    {{-- 
+    {{-- resources/views/welcome.blade.php --}}
+
+{{-- 
     ============================================================
-    SECTION GALERI (DIPERBARUI)
+    SECTION GALERI
     ============================================================
 --}}
 <div class="bg-gray-50 py-20 sm:py-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         {{-- Judul Section --}}
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Galeri</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Galeri Kegiatan</h2>
             <p class="mt-2 text-lg leading-8 text-gray-600">
                 Dokumentasi visual dari berbagai program dan kegiatan yang telah kami laksanakan.
             </p>
         </div>
 
-        {{-- Grid Galeri (Dinamis dengan Rasio Persegi) --}}
+        {{-- Grid Galeri --}}
         <div class="mx-auto mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
             @forelse ($latestImages as $image)
                 <a href="{{ $image->getUrl() }}" 
                    data-fslightbox="gallery-welcome" 
                    class="group relative overflow-hidden rounded-xl aspect-square">
 
+                    {{-- Menggunakan getUrl() tanpa 'preview' untuk memuat gambar asli --}}
                     <img class="h-full w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-110"
-                         src="{{ $image->getUrl('preview') }}" 
+                         src="{{ $image->getUrl() }}" 
                          alt="{{ $image->name }}">
 
                     <div class="absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-40 flex items-center justify-center">
